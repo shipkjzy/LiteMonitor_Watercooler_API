@@ -1,0 +1,49 @@
+{
+  "id": "watercooler_manager_local_api",
+  "meta": {
+    "name": "水冷管理器本地API",
+    "version": "1.2",
+    "author": "OpenAI",
+    "description": "读取本机 watercooler-manager 导出的风扇百分比和水泵电压，支持自定义本地 API 端口。"
+  },
+  "inputs": [
+    {
+      "key": "api_port",
+      "label": "本地 API 端口",
+      "type": "text",
+      "default": "21977",
+      "placeholder": "例如 21977",
+      "scope": "global"
+    }
+  ],
+  "execution": {
+    "type": "chain",
+    "interval": 3,
+    "steps": [
+      {
+        "id": "status",
+        "url": "http://127.0.0.1:{{api_port}}/api/status",
+        "extract": {
+          "fan_text": "fan.text",
+          "pump_text": "pump.text"
+        }
+      }
+    ]
+  },
+  "outputs": [
+    {
+      "key": "fan_text",
+      "label": "水冷风扇",
+      "short_label": "扇",
+      "format_val": "{{fan_text}}",
+      "unit": ""
+    },
+    {
+      "key": "pump_text",
+      "label": "水冷泵压",
+      "short_label": "泵",
+      "format_val": "{{pump_text}}",
+      "unit": ""
+    }
+  ]
+}
