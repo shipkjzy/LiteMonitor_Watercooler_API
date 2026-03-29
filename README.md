@@ -1,4 +1,4 @@
-# LiteMonitor_水冷_API插件
+# LiteMonitor_Watercooler_API插件
 使LiteMonitor在任务栏显示水冷机现行的风扇转速和泵电压
 
 ## 项目依赖
